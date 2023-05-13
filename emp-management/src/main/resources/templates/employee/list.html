@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee List</title>
+  <style>
+    body {
+      background-color: #0c0c0c;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+    }
+    h1 {
+      font-size: 36px;
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 50px;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    th {
+      text-align: left;
+      font-weight: bold;
+      padding: 10px;
+      border-bottom: 2px solid #fff;
+    }
+
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #fff;
+    }
+
+    tr:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: background-color 0.3s ease;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #444;
+      margin-right: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    .add-btn {
+      display: block;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .add-btn a {
+      background-color: #ff9900;
+      margin-right: 0;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 18px;
+      padding: 15px 25px;
+    }
+
+    .add-btn a:hover {
+      background-color: #fff;
+      color: #ff9900;
+    }
+    </style>
+    </head>
+    <body>
+    <h1>Employee List</h1>
+    <table>
+    <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Password</th>
+    <th></th>
+    </tr>
+    <tr th:each="employee : ${employees}">
+    <td th:text="${employee.id}"></td>
+    <td th:text="${employee.name}"></td>
+    <td th:text="${employee.email}"></td>
+    <td th:text="${employee.password}"></td>
+    <td>
+    <a th:href="@{/employee/edit/{id}(id=${employee.id})}">Edit</a>
+    <a th:href="@{/employee/delete/{id}(id=${employee.id})}">Delete</a>
+    </td>
+    </tr>
+    </table>
+    <div class="add-btn">
+    <a th:href="@{/employee/new}">Add New Employee</a>
+    </div>
+    </body>
+    </html>

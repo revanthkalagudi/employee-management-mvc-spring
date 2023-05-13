@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Employee</title>
+  <style>
+    /* Dark theme */
+    body {
+      background-color: #1a1a1a;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+    }
+    /* Form styling */
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+      background-color: #2b2b2b;
+      color: #fff;
+    }
+
+    button[type="submit"] {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+      transition: background-color 0.2s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+
+    a {
+      display: inline-block;
+      background-color: #f44336;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+      transition: background-color 0.2s ease;
+    }
+
+    a:hover {
+      background-color: #f44336;
+    }
+    </style>
+    </head>
+    <body>
+    <h1>Edit Employee</h1>
+    <form th:action="@{/employee/update/{id}(id=${employee.id})}" th:object="${employee}" method="post">
+    <p>
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}">
+    </p>
+    <p>
+    <label for="email">Email:</label>
+    <input type="email" id="email" th:field="*{email}">
+    </p>
+    <p>
+    <label for="password">Password:</label>
+    <input type="password" id="password" th:field="*{password}">
+    </p>
+    <button type="submit">Save</button>
+    </form>
+    <a th:href="@{/}">Cancel</a>
+    <script>
+    // Add animation to the form
+       const form = document.querySelector('form');
+    form.addEventListener('submit', e => {
+                                         e.preventDefault();
+                                         form.classList.add('submitted');
+    setTimeout(() => {
+                     form.submit();
+                   }, 1000);
+    });
+    </script>
+    </body>
+    </html>
